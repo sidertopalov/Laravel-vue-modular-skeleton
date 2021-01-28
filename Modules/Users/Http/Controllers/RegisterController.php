@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -21,14 +22,36 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @override RegistersUsers::register()
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $user = $this->create($request->all());
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
     }
 
     /**
      * The user has been registered.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\JsonResponse
      */
     protected function registered(Request $request, User $user)
@@ -49,7 +72,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:100',
+            'last_name' => 'required|max:100',
+            'phone_number' => 'required|max:50|unique:users,phone_number',
             'email' => 'required|email:filter|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -64,7 +89,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

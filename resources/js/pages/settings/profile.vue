@@ -3,21 +3,38 @@
     <form @submit.prevent="update" @keydown="form.onKeydown($event)">
       <alert-success :form="form" :message="$t('info_updated')" />
 
-      <!-- Name -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
-        <div class="col-md-7">
-          <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-          <has-error :form="form" field="name" />
-        </div>
-      </div>
-
       <!-- Email -->
       <div class="form-group row">
         <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
         <div class="col-md-7">
-          <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-          <has-error :form="form" field="email" />
+          <input v-model="user.email" disabled :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+        </div>
+      </div>
+
+      <!-- First Name -->
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('first_name') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.first_name" :class="{ 'is-invalid': form.errors.has('first_name') }" class="form-control" type="text" name="first_name">
+          <has-error :form="form" field="first_name" />
+        </div>
+      </div>
+
+       <!-- Last Name -->
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('last_name') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.last_name" :class="{ 'is-invalid': form.errors.has('last_name') }" class="form-control" type="text" name="last_name">
+          <has-error :form="form" field="last_name" />
+        </div>
+      </div>
+
+       <!-- Phone Number -->
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('phone_number') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.phone_number" :class="{ 'is-invalid': form.errors.has('phone_number') }" class="form-control" type="text" name="phone_number">
+          <has-error :form="form" field="phone_number" />
         </div>
       </div>
 
@@ -46,8 +63,9 @@ export default {
 
   data: () => ({
     form: new Form({
-      name: '',
-      email: ''
+      first_name: '',
+      last_name: '',
+      phone_number: ''
     })
   }),
 

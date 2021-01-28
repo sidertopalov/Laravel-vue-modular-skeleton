@@ -2,5 +2,6 @@
     "Test": true,
     "Web": true,
     "Security": true,
-    "Users": true
+    "Users": true,
+    "Admin": true
 }

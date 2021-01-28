@@ -1,8 +1,17 @@
 @import 'variables';
-@import '~bootstrap/scss/bootstrap';
+
 @import '~sweetalert2/src/sweetalert2';
 
+// @import '~bootstrap/scss/bootstrap';
+// @import '/node_modules/bootstrap/scss/bootstrap.scss';
+// @import '/node_modules/bootstrap-vue/src/index.scss';
+
+@import 'custom/shelby-theme.scss';
+@import 'custom/common.scss';
+@import 'elements/sidebar';
+@import 'elements/app-navigator';
+@import 'elements/app-footer';
 @import 'elements/card';
-@import 'elements/navbar';
 @import 'elements/buttons';
 @import 'elements/transitions';
+@import 'elements/login';

@@ -1,0 +1,290 @@
+.main-wrapper {
+  width: 100%;
+  max-width: calc(100% - 60px);
+  padding-right: 80px;
+  padding-left: 80px;
+  margin-top: 1.5rem;
+
+  @media screen and (max-width: 720px) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.main-layout {
+  padding-bottom: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+
+  @media screen and (max-width: 620px) {
+    margin-left: unset;
+  }
+}
+
+.show-mobile,
+.show-mobile.display-inline-flex {
+  display: none;
+}
+
+html {
+  overflow: overlay;
+  position: relative;
+  min-height: 100%;
+}
+
+// .show-mobile {
+//   display: none;
+// }
+
+// .show-dekstop {
+//   // display: inline;
+// }
+
+.pm-0 {
+  padding: 0;
+  margin: 0;
+}
+// padding
+.pt-10 {
+  padding-top: 10px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.pb-15 {
+  padding-bottom: 15px;
+}
+
+// margin
+
+// mr-2 name alrady exist with different style,
+// that's why i use the full name margin-r-2
+.margin-r-2 {
+  margin-right: 2px;
+}
+
+.mtb-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mtb-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+// width
+.w-100p {
+  width: 100px;
+}
+
+.w-120p {
+  width: 120px;
+}
+
+.w-150p {
+  width: 150px;
+}
+
+.w-180p {
+  width: 180px;
+}
+
+.w-250p {
+  width: 250px;
+}
+
+.w-330p {
+  width: 330px;
+}
+
+.w-400p {
+  width: 400px;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.min-w-110p {
+  min-width: 110px;
+}
+
+// height
+.h-16p {
+  height: 16px;
+}
+
+.h-20p {
+  height: 20px;
+}
+
+.h-25p {
+  height: 25px;
+}
+
+.h-40p {
+  height: 40px;
+}
+
+.h-130p {
+  height: 130px;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+// colors
+.c-white {
+  color: $white;
+}
+
+// border-radius
+.br-5 {
+  border-radius: 5px;
+}
+
+.underlined-text {
+  text-decoration: underline;
+}
+
+.large-spinner {
+width: 5rem;
+height: 5rem;
+}
+
+.h-40{
+  height: 40px;
+}
+
+.cursor-not-allowed{
+  cursor: not-allowed;
+}
+
+.clickable-icon{
+  cursor: pointer;
+}
+
+.admin-page-link {
+  height: 100px;
+  width: 100px;
+  border: 1px solid $primary;
+  color: black;
+}
+
+.admin-page-link-disabled {
+  color: gray;
+  pointer-events: none;
+  border-color: gray;
+}
+
+.icon-disabled {
+  color: $lightGrey;
+  pointer-events: none;
+  border-color: $lightGrey;
+}
+
+.fs-10px {
+  font-size: 10px;
+}
+
+.fs-15px {
+  font-size: 15px;
+}
+
+.fs-20px{
+  font-size: 20px
+}
+
+.label-for-required-input::after {
+  content: " *";
+}
+
+.disabled-section{
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.campaign-details-content .col-8{
+  max-width: fit-content;
+}
+
+.table-selected-item-background-color{
+  background-color: $lighter2-blue-shelby !important
+}
+
+.font-size-larger {
+  font-size: larger;
+}
+
+//this is a modal with one button in the center
+.modal-center-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button {
+    width: 100px;
+  }
+}
+
+// Shelby branding - change links color
+a {
+  color: $lighter-blue-shelby;
+}
+
+.btn-outline-primary {
+  color: $primary !important;
+  &:hover {
+    background-color: darken($primary, 5%) !important;
+    color: $white !important;
+  }
+}
+
+.create-category-input {
+ flex: 0 0 91%;
+}
+.input-flex-side-91 {
+  flex: 0 0 91%;
+}
+
+@-webkit-keyframes run {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .show-dekstop {
+    display: none;
+  }
+  .show-mobile {
+    display: block;
+  }
+  .show-mobile.display-inline-flex {
+    display: inline-flex;
+  }
+}

@@ -27,4 +27,8 @@ export default {
     text-transform: uppercase;
   }
 }
+
+div#app {
+  margin-left: unset !important;
+}
 </style>

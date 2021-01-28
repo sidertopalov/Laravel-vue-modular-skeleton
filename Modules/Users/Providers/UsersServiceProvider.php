@@ -4,6 +4,8 @@ namespace Modules\Users\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Users\Repositories\Contracts\UserRepositoryContract;
+use Modules\Users\Repositories\UserRepository;
 
 class UsersServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,8 @@ class UsersServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind(UserRepositoryContract::class, UserRepository::class);
     }
 
     /**

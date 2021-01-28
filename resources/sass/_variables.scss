@@ -1,3 +1,21 @@
+// // // Body
+// $body-bg: #f7f9fb;
+
+// // Cards
+// $card-spacer-x: 0.9375rem;
+// $card-spacer-y: 0.625rem;
+// $card-cap-bg: #fbfbfb;
+// $card-border-color: #e8eced;
+
+// // Borders
+// $border-radius: .125rem;
+// $border-radius-lg: .2rem;
+// $border-radius-sm: .15rem;
+
+// // Nav Pills
+// $nav-pills-border-radius: 0;
+
+
 // // Body
 $body-bg: #f7f9fb;
 
@@ -8,9 +26,41 @@ $card-cap-bg: #fbfbfb;
 $card-border-color: #e8eced;
 
 // Borders
-$border-radius: .125rem;
-$border-radius-lg: .2rem;
-$border-radius-sm: .15rem;
+$border-radius: 0.125rem;
+$border-radius-lg: 0.2rem;
+$border-radius-sm: 0.15rem;
 
 // Nav Pills
 $nav-pills-border-radius: 0;
+
+//Overwrite bootstrap colors
+$primary-shelby: #0d2748;
+
+$nav-and-footer-bg-color: #f5f5f5;
+
+$primary: $primary-shelby;
+$secondary: #c6c6c6;
+
+// син: #0d2748, жълт: #ebd21d
+// Colors
+$wiz-dark-green-color-shelby: #5d9930;
+$wiz-light-green-color-shelby: #5d9930;
+$wiz-box-shadow-shelby: #85C157;
+
+$wiz-dark-blue-shelby: #192857;
+$wiz-light-blue-shelby: #21599a;
+$lighter-blue-shelby: #5983b3;
+$lighter2-blue-shelby: #a6bdd7;
+
+$wiz-dark-color: $wiz-dark-blue-shelby;
+$wiz-light-color: $wiz-light-blue-shelby;
+$wiz-box-shadow: $lighter-blue-shelby;
+
+$white: white;
+$black: black;
+
+// Font
+$font-family-base: "Open Sans", sans-serif;
+$error-red: #dc3545;
+
+$lightGrey: #cccccc;

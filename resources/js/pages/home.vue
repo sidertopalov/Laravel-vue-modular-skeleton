@@ -1,16 +1,23 @@
 <template>
-  <card :title="$t('home')">
-    {{ $t('you_are_logged_in') }}
-  </card>
+	<card :title="$t('home')">
+		<h5 v-if="user">
+			{{ $t("hello_with_comma") }} {{ user.first_name }} {{ user.last_name }}
+		</h5>
+			{{ $t("you_are_logged_in") }}
+	</card>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  middleware: 'auth',
+  middleware: "auth",
 
+	metaInfo() {
+		return { title: this.$t("home") };
+  },
 
-  metaInfo () {
-    return { title: this.$t('home') }
-  }
-}
+	computed: mapGetters({
+		user: "auth/user",
+	}),
+};
 </script>

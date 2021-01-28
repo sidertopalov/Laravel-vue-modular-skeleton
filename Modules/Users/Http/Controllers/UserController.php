@@ -3,21 +3,34 @@
 namespace Modules\Users\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\Pager;
+use App\Repositories\Sorter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
+use Modules\Users\Services\UserService;
 
 class UserController extends Controller
 {
+    use Pager, Sorter;
+
+    private $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
+     *
      * @return Renderable
      */
     public function index()
     {
-        return view('users::index');
+
     }
 
     /**
@@ -35,10 +48,10 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    // public function create()
-    // {
-    //     return view('users::create');
-    // }
+    public function create()
+    {
+
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +60,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $statusCode = 201;
+        $user = $this->userService->create($request->all());
+        if (!empty($user->code)) {
+            $statusCode = $user->code;
+        }
+        return $user->response()->setStatusCode($statusCode);
     }
 
     /**
@@ -57,7 +75,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('users::show');
+
     }
 
     /**
@@ -67,7 +85,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('users::edit');
+
     }
 
     /**
@@ -88,7 +106,7 @@ class UserController extends Controller
         //     'email' => 'required|email|unique:users,email,'.$user->id,
         // ]);
 
-        return tap($user)->update($request->only('name', 'email'));
+        return tap($user)->update($request->only('first_name', 'last_name', 'phone_number'));
     }
 
     /**

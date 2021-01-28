@@ -1,68 +1,92 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+  <div class="main-wrapper h-100 mw-100">
+     <div class="row">
+      <router-link :to="{ name: 'welcome' }" class="w-100 pt-20">
+        <v-button>
+          <fa icon="home" />
+          <span class="sidebar-text">{{ $t("go_home") }}</span>
+        </v-button>
+      </router-link>
+    </div>
+
+    <div class="row h-100">
+      <div class="col-lg-8 m-auto d-flex justify-content-center align-items-center flex-column h-100">
+        <b-img class="mb-4 w-25 login-logo-min" src="/img/logo.jpg" rounded="circle" alt="Circle image"></b-img>
+        <form @submit.prevent="login" @keydown="form.onKeydown($event)" class="d-flex flex-column align-items-center mt-5 w-330p">
+          <!-- Username -->
+          <div class="form-group row w-100">
+            <div class="w-100">
+              <input v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
+                class="form-control br-5"
+                type="text"
+                name="email"
+                v-bind:placeholder="$t('email')">
               <has-error :form="form" field="email" />
             </div>
           </div>
 
           <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+          <div class="form-group row w-100">
+            <div class="w-100">
+              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control br-5" type="password" name="password" v-bind:placeholder="$t('password')">
               <has-error :form="form" field="password" />
             </div>
           </div>
 
           <!-- Remember Me -->
-          <div class="form-group row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
+          <div class="form-group row w-100">
+            <!-- <div class="col-md-3" /> -->
+            <!-- <div class="col-md-6 d-flex p-0">
               <checkbox v-model="remember" name="remember">
                 {{ $t('remember_me') }}
               </checkbox>
+            </div> -->
 
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
+            <div class="col-md-6 d-flex p-0">
+              <router-link :to="{ name: 'password.request' }" class="small">
                 {{ $t('forgot_password') }}
               </router-link>
             </div>
           </div>
 
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
+          <!-- Login Button -->
+          <div class="form-group row w-100">
+            <div class="col-sm-7 d-flex p-0">
+              <v-button :loading="form.busy" class="br-5">
+                <fa icon="sign-in-alt" />
                 {{ $t('login') }}
               </v-button>
-
-              <!-- GitHub Login Button -->
-              <login-with-github />
             </div>
+
+             <!-- <div class="col-sm-5 d-flex p-0 text-center">
+              <router-link :to="{ name: 'welcome' }" class="w-100 text-right">
+                <v-button>
+                  <fa icon="home" />
+                  <span class="sidebar-text">{{ $t("go_home") }}</span>
+                </v-button>
+              </router-link>
+            </div> -->
           </div>
         </form>
-      </card>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import Form from 'vform'
 import Cookies from 'js-cookie'
-import LoginWithGithub from '~/components/LoginWithGithub'
+import AppFooter from '~/components/AppFooter'
 
 export default {
-  components: {
-    LoginWithGithub
-  },
-
+  layout: 'basic',
   middleware: 'guest',
+
+  components: {
+    AppFooter
+  },
 
   metaInfo () {
     return { title: this.$t('login') }

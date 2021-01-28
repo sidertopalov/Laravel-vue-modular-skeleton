@@ -7,6 +7,17 @@ import App from '~/components/App'
 import '~/plugins'
 import '~/components'
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import Errors from './mixins/errors'
+import Helpers from './mixins/helpers'
+import Toast from './mixins/toast'
+
+// Vue.use(BootstrapVue);
+// Vue.use(IconsPlugin);
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -21,7 +21,9 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'phone_number',
         'email',
         'password',
     ];
@@ -61,9 +63,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      */
     public function getPhotoUrlAttribute()
     {
+        $name = $this->first_name[0] . ' ' . $this->last_name[0];
         return vsprintf('https://www.gravatar.com/avatar/%s.jpg?s=200&d=%s', [
             md5(strtolower($this->email)),
-            $this->name ? urlencode("https://ui-avatars.com/api/$this->name") : 'mp',
+            $name ? urlencode("https://ui-avatars.com/api/$name") : 'mp',
         ]);
     }
 
@@ -112,5 +115,19 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public static function hashPassword(string $password) {
+        return bcrypt($password);
+    }
+
+    public static function rules($merge = [], $id = null) {
+        return array_merge([
+            'first_name' => 'required|max:100',
+            'last_name' => 'required|max:100',
+            'phone_number' => 'required|max:50|unique:users,phone_number',
+            'email' => 'required|email:filter|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ], $merge);
     }
 }
